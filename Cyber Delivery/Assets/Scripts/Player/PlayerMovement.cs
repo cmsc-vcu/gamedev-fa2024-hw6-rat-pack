@@ -31,9 +31,9 @@ public class PlayerMovement : MonoBehaviour
 
         // Flip the play position from left and right
         if (horizontalInput > 0.01f)
-            transform.localScale = new Vector3(0.7f,0.7f,1);
+            transform.localScale = new Vector3(1,1,1);
         else if (horizontalInput < -0.01f)
-            transform.localScale = new Vector3(-0.7f, 0.7f, 1);
+            transform.localScale = new Vector3(-1, 1, 1);
 
         if (Input.GetKey(KeyCode.Space))
             Jump();
