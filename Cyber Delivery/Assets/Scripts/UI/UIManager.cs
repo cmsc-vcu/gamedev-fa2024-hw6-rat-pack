@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] public Image youWin;
-    [SerializeField] public Image pause;
+    [SerializeField] public Image youDied;
 
     private bool isPaused = false;
 
