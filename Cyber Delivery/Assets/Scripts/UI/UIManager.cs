@@ -4,14 +4,32 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [Header("Game Over")]
     [SerializeField] private GameObject gameOverScreen;
-    [SerializeField] private AudioClip gameOverSound;
-    [SerializeField] public Text youDied;
-    [SerializeField] public Text youWin;
+    [SerializeField] private GameObject pauseScreen;
+    [SerializeField] public Image youWin;
+    [SerializeField] public Image pause;
+
+    private bool isPaused = false;
+
     private void Awake()
     {
         gameOverScreen.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+
+        }
     }
 
     #region Game Over Functions
@@ -19,11 +37,27 @@ public class UIManager : MonoBehaviour
     public void GameOver()
     {
         gameOverScreen.SetActive(true);
-        SoundManager.instance.PlaySound(gameOverSound);
 
         //Freeze the game
         Time.timeScale = 0;
     }
+
+    public void Resume()
+    {
+        pauseScreen.SetActive(false);
+        Time.timeScale = 1f;
+        isPaused = false;
+    }
+
+    //Pause function
+    public void Pause()
+    {
+        pauseScreen.SetActive(true);
+        //Freeze the game
+        Time.timeScale = 0f;
+        isPaused = true;
+    }
+
 
     //Restart level
     public void Restart()
