@@ -9,8 +9,9 @@ public class CustomerInteraction : MonoBehaviour
     [SerializeField] private GameObject restartButton; // Reference to the restart button
     [SerializeField] private GameObject quitButton; // Reference to the quit button
     [SerializeField] private GameObject youWin; // Reference to the "You Win" text
+    [SerializeField] private TextMeshProUGUI[] packageCounters; // Array to hold TextMeshPro objects for package numbers 0 to 3
     private bool isPlayerNearby = false;
-    private int packagesRemaining = 3; // Total number of packages to be delivered
+    private bool hasReceivedPackage = false; // Track if this customer has already received a package
 
     private void Start()
     {
@@ -18,12 +19,14 @@ public class CustomerInteraction : MonoBehaviour
         dialogueText.gameObject.SetActive(false);
         // Ensure the GameOver screen and its components are hidden at the start
         gameOverScreen.SetActive(false);
+        // Ensure only the "0" counter is active at the start
+        UpdatePackageCounters();
     }
 
     private void Update()
     {
         // Check for player interaction when nearby
-        if (isPlayerNearby && Input.GetKeyDown(KeyCode.E))
+        if (isPlayerNearby && Input.GetKeyDown(KeyCode.E) && !hasReceivedPackage && GameManager.Instance.GetDeliveredPackageCount() < 3)
         {
             DeliverPackage();
         }
@@ -31,16 +34,20 @@ public class CustomerInteraction : MonoBehaviour
 
     private void DeliverPackage()
     {
-        if (packagesRemaining > 0)
+        if (GameManager.Instance.GetDeliveredPackageCount() < 3)
         {
-            packagesRemaining--; // Decrease package count
+            GameManager.Instance.PackageDelivered(); // Increase global package count
+            hasReceivedPackage = true; // Mark this customer as having received a package
 
             // Show fixed delivery message and packages remaining
-            string remainingText = "Packages remaining: " + packagesRemaining;
+            string remainingText = "Packages remaining: " + (3 - GameManager.Instance.GetDeliveredPackageCount());
             dialogueText.text = "Thank you for dropping off my package. Light Speed Delivery is the best!\n" + remainingText;
             dialogueText.gameObject.SetActive(true); // Show dialogue text
 
-            if (packagesRemaining == 0)
+            // Update the package number counters in the UI
+            UpdatePackageCounters();
+
+            if (GameManager.Instance.GetDeliveredPackageCount() == 3)
             {
                 ShowWinScreen(); // All packages delivered, show win screen
             }
@@ -58,6 +65,15 @@ public class CustomerInteraction : MonoBehaviour
         restartButton.SetActive(true);
         quitButton.SetActive(true);
         youWin.SetActive(true); // Show "You Win" text
+    }
+
+    private void UpdatePackageCounters()
+    {
+        // Loop through all package counters and enable the one corresponding to the current package number
+        for (int i = 0; i < packageCounters.Length; i++)
+        {
+            packageCounters[i].gameObject.SetActive(i == GameManager.Instance.GetDeliveredPackageCount()); // Enable the correct counter based on delivered packages
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

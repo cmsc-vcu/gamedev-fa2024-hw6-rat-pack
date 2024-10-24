@@ -22,12 +22,20 @@ public class Health : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
     [SerializeField] private AudioClip hurtSound;
 
+    [Header("UI Elements")]
+    [SerializeField] private GameObject gameOverScreen; // The UI panel that contains restart and quit buttons
+    [SerializeField] private GameObject menu;           // The menu screen 
+    [SerializeField] private GameObject youDiedText;    // The "You Died" text GameObject
+    [SerializeField] private GameObject restartButton;  // The restart button in the game over menu
+    [SerializeField] private GameObject quitButton;     // The quit button in the game over menu
+
     private void Awake()
     {
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
         spriteRend = GetComponent<SpriteRenderer>();
     }
+
     public void TakeDamage(float _damage)
     {
         if (invulnerable) return;
@@ -52,13 +60,21 @@ public class Health : MonoBehaviour
 
                 dead = true;
                 SoundManager.instance.PlaySound(deathSound);
+
+                // Check if the game object is the player
+                if (CompareTag("Player"))
+                {
+                    ShowGameOverScreen(); // Show the "You Died" screen if the player dies
+                }
             }
         }
     }
+
     public void AddHealth(float _value)
     {
         currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
     }
+
     private IEnumerator Invunerability()
     {
         invulnerable = true;
@@ -73,6 +89,16 @@ public class Health : MonoBehaviour
         Physics2D.IgnoreLayerCollision(10, 11, false);
         invulnerable = false;
     }
+
+    private void ShowGameOverScreen()
+    {
+        // Activate the GameOver screen UI elements
+        gameOverScreen.SetActive(true);
+        youDiedText.SetActive(true);
+        restartButton.SetActive(true);  // Activate the restart button
+        quitButton.SetActive(true);     // Activate the quit button
+    }
+
     private void Deactivate()
     {
         gameObject.SetActive(false);
@@ -90,5 +116,11 @@ public class Health : MonoBehaviour
         //Activate all attached component classes
         foreach (Behaviour component in components)
             component.enabled = true;
+
+        // Hide the GameOver screen upon respawn
+        gameOverScreen.SetActive(false);
+        youDiedText.SetActive(false);
+        restartButton.SetActive(false); // Hide the restart button
+        quitButton.SetActive(false);    // Hide the quit button
     }
 }

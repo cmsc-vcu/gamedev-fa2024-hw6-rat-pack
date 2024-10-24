@@ -7,6 +7,14 @@ public class EnemyFollow : MonoBehaviour
     [SerializeField] private Vector2 roomBoundsMin; // Minimum X and Y coordinates of the room
     [SerializeField] private Vector2 roomBoundsMax; // Maximum X and Y coordinates of the room
 
+    private Vector3 originalScale; // To store the original scale of the enemy
+
+    private void Start()
+    {
+        // Store the original scale at the start
+        originalScale = transform.localScale;
+    }
+
     private void Update()
     {
         // Check if the player is inside the room bounds
@@ -25,6 +33,16 @@ public class EnemyFollow : MonoBehaviour
 
             // Apply the new position
             transform.position = newPosition;
+
+            // Flip the enemy based on the direction
+            if (direction.x > 0) // Moving right
+            {
+                transform.localScale = new Vector3(-Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
+            }
+            else if (direction.x < 0) // Moving left
+            {
+                transform.localScale = new Vector3(Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
+            }
         }
     }
 

@@ -28,7 +28,6 @@ public class UIManager : MonoBehaviour
             {
                 Pause();
             }
-
         }
     }
 
@@ -58,11 +57,15 @@ public class UIManager : MonoBehaviour
         isPaused = true;
     }
 
-
     //Restart level
     public void Restart()
     {
-        Time.timeScale = 1; //Unpause game 
+        Time.timeScale = 1; //Unpause game
+
+        // Reset package delivery count
+        GameManager.Instance.ResetPackageCount();
+
+        // Reload the current scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -83,3 +86,4 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 }
+
