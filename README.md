@@ -1,24 +1,36 @@
-# Elevator Wipeout - Sidecars and PBRs - Fall 2024
+# Cyber Delivery - Fall 2024
 
-Elevator Wipeout is a save-the-world game where the player does all they can to prevent bad guys from destroying a space elevator.  If the bad guys win, the earth
-is destroyed in a spectacular, slow-motion extravaganza.
+In Glarescape City, vibrant neon signs and illuminated skylines clash with the stark realities lurking in the shadows. The megacity pulses with life as couriers weave through perilous streets, delivering 
+enigmatic packages while dodging sentient machines unleashed by a rival corporation Nebula Corp. As Zander Gunther a courier from Light Speed Delivery maneuvers through twisted alleyways and high-tech 
+environments, he juggles the pressures of legacy, morality, and the desire to forge a community where loyalty outweighs corruption. Amidst the chaos of package thefts and corporate espionage, the battle 
+for Glarescape City intensifies, as alliances are tested and the greater danger of criminal syndicates looms ever closer, threatening the very fabric of Zander's ambitions.
 
 ## Authors
 
-- John Leonard (jdleonard@vcu.edu)
-- Jason Bennett (jebennett@vcu.edu)
+- Richard Elliott (elliott2@vcu.edu)
+- L Walker (walkerle6@vcu.edu)
 
 ## Game Description
 
-Provide more details of the game.  Discuss any unique game play features.  Why is
-this game different from others?  What is the goal for playing?
+Cyber Delivery is a unique blend of platforming, puzzle-solving, and combat mechanics. Here are more details
+about it: 
+
+- Package Delivery mechaninc: Players must deliver packages to specific NPCs while navigating a dangerous environment gaurde by 
+rival robots.
+- Puzzle Elements: Players can only interact with NPCs once, adding a strategic layer as they manage their deliveries.
+- Combat: The player is equipped with a hand blaster to defend against Nebula Corp Robots.
+- Health System: The game incorporates a health system where players must avoid taking damage from enemis, adding tension to deliveries.
+- Interactive UI: A feature tracks the remaining number of packages, with dynamic updates as deliveries are completed. Upon death or mission completion,
+specific UI screens display ("You Win" or "You Died" menus).
+
+The goal of the game is to deliver all packages in Sector Z of Glarescape City while surviving attacks from Nebula Corp robots.
 
 ## Important Links
 
-- Game URL: < ... >
-- GITHUB URL: < ... >
-- Gameplay Video URL: < ... >
-- Google Doc writeup: < ... >
+- Game URL: <https://play.unity.com/en/games/695ba510-9e69-4371-a11c-d46e12a030f6/cyber-delivery>
+- GITHUB URL: <https://github.com/cmsc-vcu/gamedev-fa2024-hw6-rat-pack.git>
+- Gameplay Video URL: <https://drive.google.com/file/d/1bgIESOIin8-7mJCmiCMj8CSNIJYN11pH/view?usp=drive_link>
+- Google Doc writeup: <https://docs.google.com/presentation/d/1opVi2wNxUtz0EDreZOogh77OX013VElHCEq8k5IaTPI/edit?usp=sharing>
 
 ## Files in the repository
 
@@ -27,24 +39,3 @@ this game different from others?  What is the goal for playing?
 ./website/ - this folder contains files associated with the *gh-pages* created for this game.
 
 ./docs/ - Don't edit files in this folder directly.  Edit the source documents in the *./website* folder, then use `quarto` to render the documents to HTML and store them in the *./docs* folder.
-
-
-## How to modify this README.md
-
-Certainly you want to customize the info above this section to make it your own. But, please don't stop there.
-
-To learn more about writing good README.md files, see:
-
-<https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/>
-
-This is a scaffold project. We’ll be providing scaffolds throughout the
-semester to get you working faster, and to make grading much easier for
-the TA team.
-
-This repository supports Homework 6. Here are the homework specs and
-tasks:
-
-<https://virginiacommonwealth.instructure.com/courses/105808/assignments/952983>
-
-Good luck!
-
